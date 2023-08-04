@@ -58,10 +58,10 @@ loop,parse,% NewTop3,`/
 		case,1 : PNGThumb:=""
 			splitpath,% a_loopfield,,,Ext
 			if(!instr(Ext,"xcf")) {
-				if(instr(Ext,imageFiletypes)) {
+				if(instr(imageFiletypes,Ext)) {
 					PNGThumb:= a_loopfield
 				} else { ;get the filetype icon detail from reg
-					msgbox % PNGThumb:= spunk(a_loopfield)
+					PNGThumb:= spunk(a_loopfield)
 					commandstr:= acomspec chr(34) PNGThumb chr(34) "[0] " ArgsForIM chr(34) "0,0 44,4 0,256 44,196 256,0 148,29 256,256 147,254" chr(34) " -matte -channel A +level 0," FileFront_alpha "% +channel " top_:= chr(34) TempDir "front.png" chr(34)
 					runwait,% commandstr,,hide
 					continue,
@@ -75,10 +75,10 @@ loop,parse,% NewTop3,`/
 		case,2: PNGThumb:=""
 			splitpath,% a_loopfield,,,Ext
 			if(!instr(Ext,"xcf")){
-				if(instr(Ext,imageFiletypes)) {
+				if(instr(imageFiletypes,Ext)) {
 					PNGThumb:= a_loopfield
 				} else { ;get the filetype icon detail from reg
-					msgbox % PNGThumb:= spunk(a_loopfield)
+					PNGThumb:= spunk(a_loopfield)
 					commandstr:= acomspec chr(34) PNGThumb chr(34) "[0] " ArgsForIM chr(34) "0,0 44,6 0,256 44,198 256,0 185,32 256,256 185,252" chr(34) " -matte -channel A +level 0," FileMiddle_alpha "% +channel " mid_:= chr(34) TempDir "middle.png" chr(34) 
 					runwait,% commandstr,,hide
 					continue,
@@ -91,10 +91,10 @@ loop,parse,% NewTop3,`/
 		case,3: PNGThumb:=""
 			splitpath,% a_loopfield,,,Ext
 			if(!instr(Ext,"xcf")) {
-				if(instr(Ext,imageFiletypes)) { 
+				if(instr(imageFiletypes,Ext)) { 
 					PNGThumb:=a_loopfield
 				} else { ;get the filetype icon detail from reg
-					msgbox % PNGThumb:= spunk(a_loopfield)
+					PNGThumb:= spunk(a_loopfield)
 					commandstr:=acomspec chr(34) PNGThumb chr(34) "[0] " ArgsForIM chr(34) "0,0 44,3 0,256 44,197 256,0 219,33 256,256 218,250" chr(34) " -matte -channel A +level 0," FileBack_alpha "% +channel " bot_:= chr(34) TempDir "back.png" chr(34)
 					runwait,% commandstr,,hide
 					continue,
@@ -179,7 +179,7 @@ spunk(path) {
 	if(!default) {
 		regRead,defaulticon,% Regki:="HKEY_CLASSES_ROOT\." . xt . "\DefaultIcon"
 		if(!defaulticon)
-			msgbox,no default set
+			msgbox,% "no default set "  xt " " path
 		else {
 			(instr(defaulticon,"%SystemRoot%")? defaulticon:= strreplace(defaulticon,"%SystemRoot%","C:\Windows"))
 			(instr(defaulticon,"%1")||instr(defaulticon,"%l")?  defaulticon:= "C:\Icon\FileTypes\davinci.ico")
@@ -188,7 +188,7 @@ spunk(path) {
 		regRead,ext_desc,% Regki:= "HKEY_CLASSES_ROOT\" . default
 		regRead,defaulticon,% Regki . "\DefaultIcon"
 		if !defaulticon
-			msgbox,no default set
+			msgbox,% "no default set "  xt " " path
 		else {
 			xtt:= chr(0x27) . "." . xt . chr(0x27)
 			(instr(defaulticon,"%SystemRoot%")? defaulticon:= strreplace(defaulticon,"%SystemRoot%","C:\Windows"))
@@ -428,7 +428,9 @@ SetFolderIcon(folderPath, iconPath, iconIndex:=0)  {
    NumPut(A_IsUnicode ? &iconPath : &WiconPath, SHFOLDERCUSTOMSETTINGS, 4*2 + A_PtrSize*8)
    NumPut(iconIndex, SHFOLDERCUSTOMSETTINGS, 4*2 + A_PtrSize*9 + 4)
    DllCall("Shell32\SHGetSetFolderCustomSettings", Ptr, &SHFOLDERCUSTOMSETTINGS, WStr, folderPath, UInt, FCS_FORCEWRITE)
+	 run,%comspec% /c ie4uinit.exe -show,,hide
 }
+
 ;GimpThumbGenerate(File="",Position="") {
 ;
 ;}
