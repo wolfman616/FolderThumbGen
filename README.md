@@ -8,7 +8,7 @@ Requires Imagemagick to be installed and added to paths environmental variable
 
 icons are manually held in a set of cache folders c:\out\"firstletter of iconfilepath_as_base64text"\"iconfilepath_as_base64text".ico
 
-![folderback](https://github.com/wolfman616/FolderThumbGen/assets/62726599/d51ab438-911d-45c0-8bca-40cc956db2f4)
+![image](https://github.com/wolfman616/FolderThumbGen/assets/62726599/f6d21c2a-cdb6-4620-92a5-7bb2cb38fd21)
 
 here is what a menu entry should be set up like:
 
