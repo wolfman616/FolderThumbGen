@@ -19,4 +19,6 @@ here is how the cache looks
 
 ![image](https://github.com/wolfman616/FolderThumbGen/assets/62726599/cd086f97-b13f-41ad-ac90-c7bcd1fb25eb)
 
+an example of a menu
 
+![image](https://github.com/wolfman616/FolderThumbGen/assets/62726599/2dd2e970-7ff3-4bbc-bcdd-840bcbcbe0a6)
