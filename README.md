@@ -22,3 +22,5 @@ here is how the cache looks
 an example of a menu
 
 ![image](https://github.com/wolfman616/FolderThumbGen/assets/62726599/2dd2e970-7ff3-4bbc-bcdd-840bcbcbe0a6)
+
+to do: implement approrpriate image retrieval for .lnk files which may be in target folder. 
