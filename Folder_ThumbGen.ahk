@@ -382,6 +382,10 @@ FileLayersConfirm() {
 }
 
 DesktopIni:
+msgbox % FileName "," iconPath
+
+SetFolderIcon(FileName,iconPath)  
+return,
 if(FileExist(FileName)) {
 	IniRead,OldIcon,%FileName%,.ShellClassInfo,IconResource
 	if(Found_Previous_Pic2Icon:= Regexmatch(OldIcon,"i)(out)")) {
@@ -428,7 +432,6 @@ SetFolderIcon(folderPath, iconPath, iconIndex:=0)  {
    NumPut(A_IsUnicode ? &iconPath : &WiconPath, SHFOLDERCUSTOMSETTINGS, 4*2 + A_PtrSize*8)
    NumPut(iconIndex, SHFOLDERCUSTOMSETTINGS, 4*2 + A_PtrSize*9 + 4)
    DllCall("Shell32\SHGetSetFolderCustomSettings", Ptr, &SHFOLDERCUSTOMSETTINGS, WStr, folderPath, UInt, FCS_FORCEWRITE)
-	 run,%comspec% /c ie4uinit.exe -show,,hide
 }
 
 ;GimpThumbGenerate(File="",Position="") {
